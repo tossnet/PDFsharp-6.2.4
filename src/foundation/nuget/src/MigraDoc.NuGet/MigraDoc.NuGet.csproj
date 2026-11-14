@@ -12,8 +12,8 @@
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NuspecFile>$(MSBuildThisFileDirectory)$(MSBuildProjectName).nuspec</NuspecFile>
-    <NuGetId>PDFsharp-MigraDoc</NuGetId>
-    <NuGetTitle>PDFsharp plus MigraDoc for Windows and Linux</NuGetTitle>
+    <NuGetId>tossnet.PdfSharp.MigraDoc</NuGetId>
+    <NuGetTitle>PDFsharp plus MigraDoc 6.2.4 (fork tossnet)</NuGetTitle>
     <NuGetDescription Condition=" '$(Configuration)'=='Debug' ">$(DebugBuildMessage)%0D$(NuGetDescription)</NuGetDescription>
     <NuGetSummary>Creating Documents on the Fly.</NuGetSummary>
     <NuGetTags>$(NuGetTags_MigraDoc)</NuGetTags>

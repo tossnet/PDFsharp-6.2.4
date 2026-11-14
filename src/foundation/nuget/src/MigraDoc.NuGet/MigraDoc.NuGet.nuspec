@@ -15,28 +15,28 @@
         <releaseNotes>$releaseNotes$</releaseNotes>
         <copyright>$copyright$</copyright>
         <tags>$tags$</tags>
-        <repository type="git" url="https://github.com/empira/PDFsharp" branch="master" commit="" />
+        <repository type="git" url="https://github.com/tossnet/PDFsharp-6.2.4" branch="maintenance/6.2.4" commit="" />
         <title>$title$</title>
         <dependencies>
             <group targetFramework="net8.0">
                 <dependency id="Microsoft.Extensions.Logging.Abstractions" version="$Logging_Abstractions_PackageVersion$" />
                 <dependency id="System.Security.Cryptography.Pkcs" version="$Cryptography_PackageVersion$" />
-                <dependency id="PDFsharp" version="$version$" />
+                <dependency id="tossnet.PdfSharp" version="$version$" />
             </group>
             <group targetFramework="net9.0">
                 <dependency id="Microsoft.Extensions.Logging.Abstractions" version="$Logging_Abstractions_PackageVersion$" />
                 <dependency id="System.Security.Cryptography.Pkcs" version="$Cryptography_PackageVersion$" />
-                <dependency id="PDFsharp" version="$version$" />
+                <dependency id="tossnet.PdfSharp" version="$version$" />
             </group>
             <group targetFramework="net10.0">
                 <dependency id="Microsoft.Extensions.Logging.Abstractions" version="$Logging_Abstractions_PackageVersion$" />
                 <dependency id="System.Security.Cryptography.Pkcs" version="$Cryptography_PackageVersion$" />
-                <dependency id="PDFsharp" version="$version$" />
+                <dependency id="tossnet.PdfSharp" version="$version$" />
             </group>
             <group targetFramework="netstandard2.0">
                 <dependency id="Microsoft.Extensions.Logging.Abstractions" version="$Logging_Abstractions_PackageVersion$" />
                 <dependency id="System.Security.Cryptography.Pkcs" version="$Cryptography_PackageVersion$" />
-                <dependency id="PDFsharp" version="$version$" />
+                <dependency id="tossnet.PdfSharp" version="$version$" />
             </group>
         </dependencies>
         <frameworkReferences>

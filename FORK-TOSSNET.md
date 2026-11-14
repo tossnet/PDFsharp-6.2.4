@@ -192,12 +192,16 @@ Si le pipeline recompile tout sur un agent, il doit lire le feed.
 2. Donner le droit de lecture du feed (Feed settings, Permissions, rôle *Feed and Upstream Reader (Collaborator)*) aux identités de build. Observé : l'identité de build globale de l'organisation ne suffisait pas, l'erreur `403 ... You need to have 'ReadPackages'` désignait l'identité de build propre au projet, qu'il a fallu ajouter.
 3. Protéger la production : `condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))` sur le stage de déploiement (sinon un lancement manuel sur une autre branche déploie en production).
 
+Pipeline classique (éditeur graphique, sans YAML) : un fichier YAML du dépôt n'a alors aucun effet sur lui. Ajouter la tâche **NuGet authenticate** avant `dotnet restore`, et régler la tâche `dotnet restore` sur **Feeds in my NuGet.config** avec le chemin `nuget.config` (sans cela, seule nuget.org est lue et les packages `tossnet.*` sont introuvables). Chaque projet Azure DevOps a sa propre identité de build : l'ajouter en lecteur sur le feed.
+
+Vérifier aussi les déclencheurs de release : un déclenchement continu sans filtre de branche crée une release pour tout build. S'assurer que le déploiement vers la production exige une approbation manuelle.
+
 ## 9. État actuel
 
 | Projet | État |
 |---|---|
 | Projet A (Blazor WebAssembly hébergé) | Migré et déployé en production avec `tossnet.PdfSharp` 6.2.5. Export PDF isolé derrière une interface (un seul projet référence PdfSharp). 364 tests au moment de la migration : 363 réussis, 1 ignoré (générateur des PDF de référence), 0 échec. Un PDF exporté indique "PDFsharp 6.2.5" comme créateur et producteur |
-| Projet B (Blazor Server) | À faire. Utilise MigraDoc : il faudra les deux packages |
+| Projet B (Blazor Server) | Migré et déployé en production avec `tossnet.PdfSharp` et `tossnet.PdfSharp.MigraDoc` 6.2.5 (versions centralisées dans `Directory.Packages.props`, références sans attribut `Version`). Projet de tests : 549 tests, 515 réussis, 34 en échec. Ces 34 échecs sont tous des tests d'interface Playwright qui, selon le mainteneur, échouaient déjà avant la migration (non revérifié) : aucun lien avec les PDF. Release suivie jusqu'en production avec approbations manuelles. Un export MigraDoc indique "empira MigraDoc 6.2.5" comme créateur |
 
 Remarque : le champ "Créateur" des PDF est rempli automatiquement par la bibliothèque ("PDFsharp 6.2.5 (www.pdfsharp.com)"). La licence MIT impose de conserver son texte et le copyright dans le dépôt et les packages, pas de l'afficher dans les PDF.
 
